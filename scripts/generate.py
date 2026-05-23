@@ -72,17 +72,9 @@ def aggregate_networks(nets: list) -> list:
     return sorted(collapse_addresses(nets), key=lambda n: (n.version, n.network_address))
 
 
-def write_routes(path: Path, nets: list, label: str, source: str) -> None:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    header = (
-        f"# {label}\n"
-        f"# Generated: {now}\n"
-        f"# Source: {source}\n"
-        f"# Count: {len(nets)}\n"
-        "# Format: one CIDR per line\n"
-    )
+def write_routes(path: Path, nets: list) -> None:
     body = "\n".join(str(n) for n in nets) + ("\n" if nets else "")
-    path.write_text(header + body, encoding="utf-8")
+    path.write_text(body, encoding="utf-8")
 
 
 def main() -> int:
@@ -121,10 +113,10 @@ def main() -> int:
         v4 = sorted(v4, key=lambda n: n.network_address)
         v6 = sorted(v6, key=lambda n: n.network_address)
 
-    write_routes(ROOT / "chnroutes-v4", v4, "China IPv4 routes (chnroutes)", source)
-    write_routes(ROOT / "chnroutes-v6", v6, "China IPv6 routes (chnroutes)", source)
+    write_routes(ROOT / "chnroutes-v4", v4)
+    write_routes(ROOT / "chnroutes-v6", v6)
     # 兼容旧版仅 IPv4 的 chnroutes.txt
-    write_routes(ROOT / "chnroutes.txt", v4, "China IPv4 routes (chnroutes.txt)", source)
+    write_routes(ROOT / "chnroutes.txt", v4)
 
     meta = ROOT / "metadata.json"
     import json
