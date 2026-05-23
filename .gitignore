@@ -1,0 +1,16 @@
+# APNIC 原始数据（体积大，仅 CI/本地生成时使用）
+delegated-apnic-latest
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+.specstory/
+.cursorindexingignore
