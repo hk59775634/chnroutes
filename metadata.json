@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-06-12T01:22:15.695062+00:00",
-  "ipv4_count": 5489,
-  "ipv6_count": 2013,
+  "updated_at": "2026-06-13T01:20:12.343746+00:00",
+  "ipv4_count": 5488,
+  "ipv6_count": 2012,
   "source": "APNIC delegated-apnic-latest (registry|CN|ipv4|ipv6)",
   "aggregated": true
 }
